@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: dim_seven_day_tokens
+    description: "A subset of dim_unique_tokens where pool_2_created_at time is less than 7 days old."

@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: stg_token_prices
+    description: >
+      A staging view for the price of tokens queried every 10 minutes.
+      Only looks at tokens whose Raydium pools were created in the past week.
+
+    columns:
+      - name: token_mint
+        description: The unique mint identifier of the token.
+        tests:
+          - not_null:
+              severity: warn
+
+      - name: price_usd
+        description: The price of the token in usd.
+
+      - name: price_quote_sol
+        description: The amount of SOL tokens needed to purchase 1 token.
+
+      - name: liquidity
+        description: >
+          The amound of tokens available in the swap pool
+
+      - name: market_cap_usd
+        description: >
+          The total value in USD of all tokens based on the current price
+
+      - name: last_updated
+        description: >
+          The timestamp at which the price values were recorded
+
+      - name: execution_time
+        description: >
+          The airflow timestamp of when this data was added to src_token_prices

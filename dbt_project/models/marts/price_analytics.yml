@@ -1,0 +1,93 @@
+version: 2
+
+models:
+  - name: price_analytics
+    description: >
+      An incremental table which has all the data of fct_token_prices
+      and also adds various calculated tables to be used for analytics.
+
+    columns:
+      - name: token_mint
+        description: The unique mint identifier of the token.
+        tests:
+          - not_null:
+              severity: warn
+
+      - name: price_usd
+        description: The price of the token in usd.
+
+      - name: price_quote_sol
+        description: The amount of SOL tokens needed to purchase 1 token.
+
+      - name: liquidity
+        description: >
+          The amound of tokens available in the swap pool
+
+      - name: market_cap_usd
+        description: >
+          The total value in USD of all tokens based on the current price
+
+      - name: last_updated
+        description: >
+          The timestamp at which the price values were recorded
+
+      - name: execution_time
+        description: >
+          The airflow timestamp of when this data was added to src_token_prices
+
+      - name: price_change_10_min
+        description: >
+          The difference in price between this execution time and the last,
+          which should be roughly 10 minutes
+
+      - name: price_change_percentage_10_min
+        description: >
+          The percentage difference in price between this execution 
+          time and the last, which should be roughly 10 minutes
+
+      - name: price_change_30_min
+        description: >
+          The difference in price between this execution time and 3 periods
+          earlier, which should be roughly 30 minutes
+
+      - name: price_change_percentage_30_min
+        description: >
+          The percentage difference in price between this execution 
+          time and 3 periods earlier, which should be roughly 30 minutes
+
+      - name: price_change_1_hour
+        description: >
+          The difference in price between this execution time and 6 periods
+          earlier, which should be roughly 1 hour
+
+      - name: price_change_percentage_1_hour
+        description: >
+          The percentage difference in price between this execution 
+          time and 6 periods earlier, which should be roughly 1 hour
+
+      - name: price_change_6_hours
+        description: >
+          The difference in price between this execution time and 36 periods
+          earlier, which should be roughly 6 hours
+
+      - name: price_change_percentage_6_hours
+        description: >
+          The percentage difference in price between this execution 
+          time and 36 periods earlier, which should be roughly 6 hours'
+
+      - name: price_change_24_hours
+        description: >
+          The difference in price between this execution time and 144 periods
+          earlier, which should be roughly 24 hours
+
+      - name: price_change_percentage_24_hours
+        description: >
+          The percentage difference in price between this execution 
+          time and 144 periods earlier, which should be roughly 24 hours
+
+      - name: is_alltime_high
+        description: >
+          A boolean value which tracks if the price was an alltime high at
+          that execution time.  To find the all time high, you find the row
+          with the latest execution_time from all rows where is_alltime_high
+          is TRUE

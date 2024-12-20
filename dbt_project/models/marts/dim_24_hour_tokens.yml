@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: dim_24_hour_tokens
+    description: "A subset of dim_unique_tokens where pool_2_created_at time is less than 24 hours old."

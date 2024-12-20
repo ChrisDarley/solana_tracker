@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: chrisdarley
+    database: dataexpert_student
+    schema: chrisdarley
+    tables:
+      - name: src_distinct_tokens
+      - name: src_token_prices

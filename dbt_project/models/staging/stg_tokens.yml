@@ -1,0 +1,60 @@
+version: 2
+
+models:
+  - name: stg_tokens
+    description: >
+      A staging view for tokens filtered by the latest execution_time, with markets 'pumpfun' and 'raydium'. 
+      Includes a calculated column for time spent in 'pumpfun'.
+    columns:
+      - name: token_name
+        description: The name of the token.
+
+      - name: token_symbol
+        description: The symbol of the token.
+
+      - name: token_mint
+        description: The unique mint identifier of the token.
+        tests:
+          - not_null:
+              severity: warn
+          - unique:
+              severity: warn
+      - name: pool_1_id
+        description: The unique address of the first pool.
+
+      - name: pool_1_market
+        description: The market of the first pool, which is usually 'pumpfun'.
+
+      - name: pool_1_created_at
+        description: >
+          The timestamp (in UTC) when the token was added to the first pool.
+
+      - name: pool_1_last_updated
+        description: >
+          The timestamp (in UTC) of the last update for the token in the first pool.
+
+      - name: pool_2_id
+        description: The unique address of the second pool.
+
+      - name: pool_2_market
+        description: The market of the second pool, which is usually 'raydium'.
+
+      - name: pool_2_created_at
+        description: >
+          The timestamp (in UTC) when the token was added to the second pool.
+
+      - name: pool_2_last_updated
+        description: >
+          The timestamp (in UTC) of the last update for the token in the second pool.
+
+      - name: execution_time
+        description: >
+          The timestamp of the execution when the tokens being staged were loaded into the src table.
+        tests:
+          - not_null:
+              severity: warn
+
+      - name: time_in_pumpfun_seconds
+        description: >
+          The time difference (in seconds) between the creation timestamps of 'pumpfun' (pool_1) 
+          and 'raydium' (pool_2).

@@ -1,0 +1,52 @@
+version: 2
+
+models:
+  - name: dim_unique_tokens
+    description: "Dimension table containing unique tokens with their metadata and timestamps."
+    columns:
+      - name: token_name
+        description: "Name of the token."
+
+      - name: token_symbol
+        description: "Symbol of the token."
+
+      - name: token_mint
+        description: "Primary key for the unique tokens dimension table."
+        tests:
+          - not_null:
+              severity: warn
+          - unique:
+              severity: warn
+
+      - name: pool_1_id
+        description: "ID for Pool 1."
+
+      - name: pool_1_market
+        description: "Market for Pool 1."
+
+      - name: pool_1_created_at
+        description: "Timestamp when Pool 1 was created."
+
+      - name: pool_1_last_updated
+        description: "Timestamp when Pool 1 was last updated."
+
+      - name: pool_2_id
+        description: "ID for Pool 2."
+
+      - name: pool_2_market
+        description: "Market for Pool 2."
+
+      - name: pool_2_created_at
+        description: "Timestamp when Pool 2 was created."
+
+      - name: pool_2_last_updated
+        description: "Timestamp when Pool 2 was last updated."
+
+      - name: execution_time
+        description: "Timestamp when the token was loaded into the table."
+        tests:
+          - not_null:
+              severity: warn
+
+      - name: time_in_pumpfun_seconds
+        description: "Time difference in seconds between Pool 1 creation and Pool 2 creation."
