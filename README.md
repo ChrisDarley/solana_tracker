@@ -1,0 +1,1 @@
+This is a placeholder readme file.  This is a codebase of the relevant files for my DataExpert Analytucs Engineering Bootcamp.  My project focused on analysing the Raydium solana memecoin market to identify trends which could be the basis for a trading strategy.  I will update this file later.  For a detailed description of the project as of 12/20/24, please read the 
